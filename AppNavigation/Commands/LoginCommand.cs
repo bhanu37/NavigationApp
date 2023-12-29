@@ -6,21 +6,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace AppNavigation.Commands
 {
-    public class NavigationCommand<TViewModel> : CommandBase 
-        where TViewModel : ViewModelBase
+    public class LoginCommand : CommandBase
     {
-        private readonly NavigationService<TViewModel> navigationService;
+        private readonly LoginViewModel _viewModel;
+        private readonly NavigationService<AccountViewModel> navigationService;
 
-        public NavigationCommand(NavigationService<TViewModel> navigationService)
+        public LoginCommand(LoginViewModel viewModel, NavigationService<AccountViewModel> navigationService)
         {
+            _viewModel = viewModel;
             this.navigationService = navigationService;
         }
 
         public override void Execute(object? parameter)
         {
+            MessageBox.Show("Login succes");
+
             navigationService.Navigate();
         }
     }
