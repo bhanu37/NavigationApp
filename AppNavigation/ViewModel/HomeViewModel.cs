@@ -11,7 +11,6 @@ namespace AppNavigation.ViewModel
 {
     public class HomeViewModel : ViewModelBase
     {
-        public int Id { get; set; }
         public ICommand NavigateToAccount { get; set; }
 
         public HomeViewModel(NavigationStore navigationStore)
