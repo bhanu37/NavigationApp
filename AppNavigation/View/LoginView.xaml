@@ -9,6 +9,8 @@
     <Grid>
         <StackPanel HorizontalAlignment="Left">
             <Label Content="Welcome to Login" FontSize="20" Margin="20"/>
+            <TextBox Text="{Binding Username}"/>
+            <TextBox/>
             <Button Content="LogIn" Command="{Binding LoginCommand}" Margin="20"/>
         </StackPanel>
     </Grid>

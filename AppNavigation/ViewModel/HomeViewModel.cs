@@ -15,10 +15,10 @@ namespace AppNavigation.ViewModel
         public ICommand NavigateToAccount { get; set; }
         public ICommand NavigateToLogin { get; set; }
 
-        public HomeViewModel(NavigationStore navigationStore)
+        public HomeViewModel(NavigationStore navigationStore, AccountStore accountStore)
         {
             NavigateToLogin = new NavigationCommand<LoginViewModel>(
-                new NavigationService<LoginViewModel>(navigationStore, () => new LoginViewModel(navigationStore)));
+                new NavigationService<LoginViewModel>(navigationStore, accountStore, () => new LoginViewModel(navigationStore, accountStore)));
         }
     }
 }

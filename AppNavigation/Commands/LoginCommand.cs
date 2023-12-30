@@ -1,4 +1,5 @@
-﻿using AppNavigation.Services;
+﻿using AppNavigation.Model;
+using AppNavigation.Services;
 using AppNavigation.Stores;
 using AppNavigation.ViewModel;
 using System;
@@ -12,11 +13,13 @@ namespace AppNavigation.Commands
 {
     public class LoginCommand : CommandBase
     {
+        private readonly AccountStore _accountStore;
         private readonly LoginViewModel _viewModel;
         private readonly NavigationService<AccountViewModel> navigationService;
 
-        public LoginCommand(LoginViewModel viewModel, NavigationService<AccountViewModel> navigationService)
+        public LoginCommand(LoginViewModel viewModel, AccountStore accountStore, NavigationService<AccountViewModel> navigationService)
         {
+            _accountStore = accountStore;
             _viewModel = viewModel;
             this.navigationService = navigationService;
         }
@@ -25,6 +28,11 @@ namespace AppNavigation.Commands
         {
             MessageBox.Show("Login succes");
 
+            _accountStore.CurrentAccount = new Account()
+            {
+                Username = _viewModel.Username,
+                Email = $"{_viewModel.Username}@gmail.com"
+            };
             navigationService.Navigate();
         }
     }

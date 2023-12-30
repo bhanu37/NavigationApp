@@ -11,11 +11,13 @@ namespace AppNavigation.Services
     public class NavigationService<TViewModel>
         where TViewModel : ViewModelBase
     {
+        private readonly AccountStore _accountStore;
         private readonly NavigationStore _navigationStore;
         private readonly Func<TViewModel> _currentViewModel;
 
-        public NavigationService(NavigationStore navigationStore, Func<TViewModel> currentViewModel)
+        public NavigationService(NavigationStore navigationStore, AccountStore accountStore, Func<TViewModel> currentViewModel)
         {
+            _accountStore = accountStore;
             _navigationStore = navigationStore;
             _currentViewModel = currentViewModel;
         }

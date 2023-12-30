@@ -1,4 +1,5 @@
 ﻿using AppNavigation.Commands;
+using AppNavigation.Model;
 using AppNavigation.Services;
 using AppNavigation.Stores;
 using System;
@@ -12,12 +13,18 @@ namespace AppNavigation.ViewModel
 {
     public class AccountViewModel : ViewModelBase
     {
+        private AccountStore _accountStore;
+
+        public string Username => _accountStore.CurrentAccount?.Username;
+        public string Email => _accountStore.CurrentAccount?.Email;
+
         public ICommand NavigateToHome { get; set; }
 
-        public AccountViewModel(NavigationStore navigationStore)
+        public AccountViewModel(AccountStore accountStore, NavigationStore navigationStore)
         {
+            _accountStore = accountStore;
             NavigateToHome = new NavigationCommand<HomeViewModel>(new 
-                NavigationService<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore)));
+                NavigationService<HomeViewModel>(navigationStore, accountStore, () => new HomeViewModel(navigationStore, accountStore)));
         }
     }
 }

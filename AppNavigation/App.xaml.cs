@@ -14,7 +14,8 @@ namespace AppNavigation
         protected override void OnStartup(StartupEventArgs e)
         {
             NavigationStore navigationStore = new NavigationStore();
-            navigationStore.CurrentViewModel = new HomeViewModel(navigationStore);
+            AccountStore accountStore = new AccountStore();
+            navigationStore.CurrentViewModel = new HomeViewModel(navigationStore, accountStore);
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel(navigationStore)

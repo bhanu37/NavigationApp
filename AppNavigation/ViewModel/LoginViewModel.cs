@@ -1,4 +1,5 @@
 ﻿using AppNavigation.Commands;
+using AppNavigation.Model;
 using AppNavigation.Services;
 using AppNavigation.Stores;
 using System;
@@ -12,12 +13,20 @@ namespace AppNavigation.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {
+        private string _username;
+
+        public string Username
+        {
+            get { return _username; }
+            set { _username = value; }
+        }
+
         public ICommand LoginCommand { get; set; }
 
-        public LoginViewModel(NavigationStore navigationStore)
+        public LoginViewModel(NavigationStore navigationStore, AccountStore accountStore)
         {
-            LoginCommand = new LoginCommand(this, 
-                new NavigationService<AccountViewModel>(navigationStore, () => new AccountViewModel(navigationStore)));
+            LoginCommand = new LoginCommand(this, accountStore,
+                new NavigationService<AccountViewModel>(navigationStore, accountStore, () => new AccountViewModel(accountStore, navigationStore)));
         }
 
     }

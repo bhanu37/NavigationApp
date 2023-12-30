@@ -9,6 +9,8 @@
     <Grid>
         <StackPanel HorizontalAlignment="Left">
             <Label Content="Welcome to Account" FontSize="20" Margin="20"/>
+            <TextBlock Text="{Binding Username}"/>
+            <TextBlock Text="{Binding Email}"/>
             <Button Content="Home" Command="{Binding NavigateToHome}" Margin="20"/>
         </StackPanel>
     </Grid>
