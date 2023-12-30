@@ -12,9 +12,9 @@ namespace AppNavigation.Commands
     public class NavigationCommand<TViewModel> : CommandBase 
         where TViewModel : ViewModelBase
     {
-        private readonly NavigationService<TViewModel> navigationService;
+        private readonly INavigationService<TViewModel> navigationService;
 
-        public NavigationCommand(NavigationService<TViewModel> navigationService)
+        public NavigationCommand(INavigationService<TViewModel> navigationService)
         {
             this.navigationService = navigationService;
         }

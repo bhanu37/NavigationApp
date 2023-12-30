@@ -20,7 +20,11 @@ namespace AppNavigation
         {
             _accountStore = new AccountStore();
             _navigationStore = new NavigationStore();
-            _navigationBarViewModel = new NavigationBarViewModel(
+        }
+
+        private NavigationBarViewModel? CreateNavigationBarViewModel()
+        {
+            return new NavigationBarViewModel(
                 _accountStore,
                 CreateHomeNavigationService(),
                 CreateAccountNavigationService(),
@@ -28,17 +32,17 @@ namespace AppNavigation
                 );
         }
 
-        private NavigationService<HomeViewModel> CreateHomeNavigationService()
+        private INavigationService<HomeViewModel> CreateHomeNavigationService()
         {
-            return new NavigationService<HomeViewModel>(_navigationStore, () => new HomeViewModel(_navigationBarViewModel, CreateLoginNavigationService()));
+            return new LayoutNavigationService<HomeViewModel>(_navigationStore, CreateNavigationBarViewModel, () => new HomeViewModel(CreateLoginNavigationService()));
         }
 
-        private NavigationService<AccountViewModel> CreateAccountNavigationService()
+        private INavigationService<AccountViewModel> CreateAccountNavigationService()
         {
-            return new NavigationService<AccountViewModel>(_navigationStore, () => new AccountViewModel(_accountStore, _navigationBarViewModel, CreateHomeNavigationService()));
+            return new LayoutNavigationService<AccountViewModel>(_navigationStore, CreateNavigationBarViewModel, () => new AccountViewModel(_accountStore, CreateHomeNavigationService()));
         }
 
-        private NavigationService<LoginViewModel> CreateLoginNavigationService()
+        private INavigationService<LoginViewModel> CreateLoginNavigationService()
         {
             return new NavigationService<LoginViewModel>(_navigationStore, () => new LoginViewModel(_accountStore, CreateAccountNavigationService()));
         }

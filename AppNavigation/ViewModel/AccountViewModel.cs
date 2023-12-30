@@ -14,16 +14,13 @@ namespace AppNavigation.ViewModel
     public class AccountViewModel : ViewModelBase
     {
         private AccountStore _accountStore;
-
-        public NavigationBarViewModel NavigationBarViewModel { get; set; }
         public string Username => _accountStore.CurrentAccount?.Username;
         public string Email => _accountStore.CurrentAccount?.Email;
 
         public ICommand NavigateToHome { get; set; }
 
-        public AccountViewModel(AccountStore accountStore, NavigationBarViewModel? navigationBarViewModel, NavigationService<HomeViewModel> homeNavigationService)
+        public AccountViewModel(AccountStore accountStore, INavigationService<HomeViewModel> homeNavigationService)
         {
-            NavigationBarViewModel = navigationBarViewModel;
             _accountStore = accountStore;
             NavigateToHome = new NavigationCommand<HomeViewModel>(homeNavigationService);
         }

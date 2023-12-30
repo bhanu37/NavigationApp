@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppNavigation"
         xmlns:vm="clr-namespace:AppNavigation.ViewModel"
-        xmlns:vw="clr-namespace:AppNavigation.View"
+        xmlns:vw="clr-namespace:AppNavigation.View" xmlns:Components="clr-namespace:AppNavigation.Components"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800">
     <Window.Resources>
@@ -17,6 +17,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <vw:LoginView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LayoutViewModel}">
+            <Components:Layout/>
         </DataTemplate>
     </Window.Resources>
     <Grid>

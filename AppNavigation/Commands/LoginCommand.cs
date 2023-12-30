@@ -15,9 +15,9 @@ namespace AppNavigation.Commands
     {
         private readonly AccountStore _accountStore;
         private readonly LoginViewModel _viewModel;
-        private readonly NavigationService<AccountViewModel> navigationService;
+        private readonly INavigationService<AccountViewModel> navigationService;
 
-        public LoginCommand(LoginViewModel viewModel, AccountStore accountStore, NavigationService<AccountViewModel> navigationService)
+        public LoginCommand(LoginViewModel viewModel, AccountStore accountStore, INavigationService<AccountViewModel> navigationService)
         {
             _accountStore = accountStore;
             _viewModel = viewModel;

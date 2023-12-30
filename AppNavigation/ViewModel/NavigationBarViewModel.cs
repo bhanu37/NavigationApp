@@ -20,9 +20,9 @@ namespace AppNavigation.ViewModel
         public bool isLoggedIn => _accountStore.isLoggedIn;
 
         public NavigationBarViewModel(AccountStore accountStore,
-                                        NavigationService<HomeViewModel> homeNavigationService, 
-                                        NavigationService<AccountViewModel> AccountNavigationService,
-                                        NavigationService<LoginViewModel> LoginNavigationService) 
+                                        INavigationService<HomeViewModel> homeNavigationService,
+                                        INavigationService<AccountViewModel> AccountNavigationService,
+                                        INavigationService<LoginViewModel> LoginNavigationService) 
         {
             _accountStore = accountStore;
             NavigateHomeCommand = new NavigationCommand<HomeViewModel>(homeNavigationService);
