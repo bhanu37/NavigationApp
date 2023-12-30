@@ -23,10 +23,9 @@ namespace AppNavigation.ViewModel
 
         public ICommand LoginCommand { get; set; }
 
-        public LoginViewModel(NavigationStore navigationStore, AccountStore accountStore)
+        public LoginViewModel(AccountStore accountStore, NavigationService<AccountViewModel> accountNavigationService)
         {
-            LoginCommand = new LoginCommand(this, accountStore,
-                new NavigationService<AccountViewModel>(navigationStore, accountStore, () => new AccountViewModel(accountStore, navigationStore)));
+            LoginCommand = new LoginCommand(this, accountStore, accountNavigationService);
         }
 
     }

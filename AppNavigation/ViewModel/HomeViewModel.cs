@@ -12,13 +12,14 @@ namespace AppNavigation.ViewModel
 {
     public class HomeViewModel : ViewModelBase
     {
+        public NavigationBarViewModel NavigationBarViewModel { get; set; }
         public ICommand NavigateToAccount { get; set; }
         public ICommand NavigateToLogin { get; set; }
 
-        public HomeViewModel(NavigationStore navigationStore, AccountStore accountStore)
+        public HomeViewModel(NavigationBarViewModel? navigationBarViewModel, NavigationService<LoginViewModel> loginNavigationService)
         {
-            NavigateToLogin = new NavigationCommand<LoginViewModel>(
-                new NavigationService<LoginViewModel>(navigationStore, accountStore, () => new LoginViewModel(navigationStore, accountStore)));
+            NavigationBarViewModel = navigationBarViewModel;
+            NavigateToLogin = new NavigationCommand<LoginViewModel>(loginNavigationService);
         }
     }
 }
