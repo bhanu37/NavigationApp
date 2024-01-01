@@ -17,6 +17,7 @@ namespace AppNavigation.Stores
 			get { return _viewModelBase; }
 			set 
 			{
+				_viewModelBase?.Dispose();
 				_viewModelBase = value;
 				OnCurrentViewModelChanged();
 			}

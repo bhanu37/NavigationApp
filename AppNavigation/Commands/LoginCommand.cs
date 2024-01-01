@@ -26,8 +26,6 @@ namespace AppNavigation.Commands
 
         public override void Execute(object? parameter)
         {
-            MessageBox.Show("Login succes");
-
             _accountStore.CurrentAccount = new Account()
             {
                 Username = _viewModel.Username,

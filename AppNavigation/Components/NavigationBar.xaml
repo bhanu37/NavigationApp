@@ -23,6 +23,7 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Column="0" Text="Navigation Demo" Foreground="White"/>
@@ -30,5 +31,6 @@
         <Button Grid.Column="1" Content="Home" Command="{Binding NavigateHomeCommand}"/>
         <Button Grid.Column="2" Content="Accoun" Command="{Binding NavigateAccountCommand}" Visibility="{Binding isLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <Button Grid.Column="3" Content="Login" Command="{Binding NavigateLoginCommand}"/>
+        <Button Grid.Column="4" Content="Logout" Command="{Binding LogoutCommand}" Visibility="{Binding isLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
 </UserControl>

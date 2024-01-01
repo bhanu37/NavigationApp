@@ -14,7 +14,6 @@ namespace AppNavigation
     {
         private readonly AccountStore _accountStore;
         private readonly NavigationStore _navigationStore;
-        private readonly NavigationBarViewModel _navigationBarViewModel;
 
         public App()
         {

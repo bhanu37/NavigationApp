@@ -4,6 +4,7 @@ using AppNavigation.Services;
 using AppNavigation.Stores;
 using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,20 @@ namespace AppNavigation.ViewModel
         {
             _accountStore = accountStore;
             NavigateToHome = new NavigationCommand<HomeViewModel>(homeNavigationService);
+
+            _accountStore.CurrentAccountChanged += OnCurrentAccountChanged;
+        }
+
+        private void OnCurrentAccountChanged()
+        {
+            OnPropertyChanged(nameof(Username));
+            OnPropertyChanged(nameof(Email));
+        }
+
+        public override void Dispose()
+        {
+            _accountStore.CurrentAccountChanged -= OnCurrentAccountChanged;
+            base.Dispose();
         }
     }
 }
